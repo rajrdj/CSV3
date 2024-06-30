@@ -51,23 +51,23 @@ export default function CSVTable({ file }) {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-2">{file.filename}</h2>
+      <h2 className="mb-4">{file.filename}</h2>
       <input
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-4 p-2 border rounded"
+        className="mb-4"
       />
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border">
+        <table>
           <thead>
             <tr>
               {file.columns.map((column) => (
                 <th
                   key={column}
-                  className="px-4 py-2 border cursor-pointer"
                   onClick={() => handleSort(column)}
+                  className="cursor-pointer"
                 >
                   {column}
                   {sortColumn === column && (
@@ -78,7 +78,7 @@ export default function CSVTable({ file }) {
                       e.stopPropagation();
                       handleColumnSelect(column);
                     }}
-                    className="ml-2 bg-blue-500 text-white px-2 py-1 rounded text-xs"
+                    className="btn-secondary ml-2"
                   >
                     Chart
                   </button>
@@ -90,20 +90,18 @@ export default function CSVTable({ file }) {
             {paginatedData.map((row, index) => (
               <tr key={index}>
                 {file.columns.map((column) => (
-                  <td key={column} className="px-4 py-2 border">
-                    {row[column]}
-                  </td>
+                  <td key={column}>{row[column]}</td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="mt-4 flex justify-between items-center">
+      <div className="mt-4 flex justify-between bg-orange-500 items-center">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-300"
+          className="btn-secondary"
         >
           Previous
         </button>
@@ -113,18 +111,18 @@ export default function CSVTable({ file }) {
         <button
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-300"
+          className="btn-secondary"
         >
           Next
         </button>
       </div>
       {showChart && selectedColumn && (
         <div className="mt-8">
-          <h3 className="text-lg font-semibold mb-2">Bar Chart: {selectedColumn}</h3>
+          <h3 className="mb-4">Bar Chart: {selectedColumn}</h3>
           <BarChart data={file.data} column={selectedColumn} />
           <button
             onClick={() => setShowChart(false)}
-            className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+            className="btn-danger mt-4"
           >
             Close Chart
           </button>

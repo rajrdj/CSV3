@@ -3,6 +3,7 @@ import FileUpload from '../components/FileUpload';
 import CSVList from '../components/CSVList';
 import CSVTable from '../components/CSVTable';
 
+
 export default function Home() {
   const [csvFiles, setCsvFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -69,29 +70,36 @@ export default function Home() {
     }
   };
 
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">CSV File Upload and Viewer</h1>
+ 
+ return (
+  <div className="container py-8">
+    <h1 className="mb-8 text-yellow-400">CSV File Upload and Viewer</h1>
+    <div className="card mb-8">
       <FileUpload onUploadSuccess={fetchCSVFiles} />
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="md:col-span-1">
-              <CSVList
-                files={csvFiles}
-                onSelect={handleFileSelect}
-                onDelete={handleFileDelete}
-              />
-            </div>
-            <div className="md:col-span-2">
-              {selectedFile && <CSVTable file={selectedFile} />}
-            </div>
+    </div>
+    {error && <p className="error-message mb-4">{error}</p>}
+    {loading ? (
+      <p>Loading...</p>
+    ) : (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="md:col-span-1">
+          <div className="card">
+            <CSVList
+              files={csvFiles}
+              onSelect={handleFileSelect}
+              onDelete={handleFileDelete}
+            />
           </div>
         </div>
-      )}
-    </div>
-  );
+        <div className="md:col-span-2">
+          {selectedFile && (
+            <div className="card">
+              <CSVTable file={selectedFile} />
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+);
 }

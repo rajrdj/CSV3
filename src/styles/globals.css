@@ -1,0 +1,105 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #1e40af;
+  --background-color: #f3f4f6;
+  --text-color: #1f2937;
+  --error-color: #ef4444;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+} 
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-extrabold mb-2;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-4xl;
+  @apply bg-orange-600
+}
+
+button {
+  @apply font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-300;
+}
+
+.btn-primary {
+  @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300;
+}
+
+.btn-secondary {
+  @apply text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200;
+}
+
+.btn-danger {
+  @apply text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300;
+}
+
+input[type="text"],
+input[type="file"] {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+}
+
+table {
+  @apply w-full text-sm text-left text-gray-500;
+}
+
+thead {
+  @apply text-xs text-gray-700 uppercase bg-gray-50;
+}
+
+th, td {
+  @apply px-6 py-3;
+}
+
+tbody tr {
+  @apply bg-white border-b hover:bg-gray-50;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
+
+.error-message {
+  @apply text-red-600 text-sm mt-1;
+}
+
+.success-message {
+  @apply text-green-600 text-sm mt-1;
+}
+
+Custom scrollbar 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 export default function FileUpload({ onUploadSuccess }) {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -37,21 +38,32 @@ export default function FileUpload({ onUploadSuccess }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <input
-        type="file"
-        accept=".csv"
-        onChange={(e) => setFile(e.target.files[0])}
-        className="mb-2 p-2 border rounded"
-      />
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label htmlFor="file-upload" className="block text-sm font-medium text-yellow-700 mb-2">
+          Choose CSV file
+        </label>
+        <input
+          id="file-upload"
+          type="file"
+          accept=".csv"
+          onChange={(e) => setFile(e.target.files[0])}
+          className="block w-full text-sm text-gray-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100"
+        />
+      </div>
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+        className={`btn-primary w-full ${(!file || loading) && 'opacity-50 cursor-not-allowed'}`}
         disabled={!file || loading}
       >
         {loading ? 'Uploading...' : 'Upload CSV'}
       </button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </form>
   );
 }
